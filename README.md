@@ -13,3 +13,5 @@
 - src/app: Contains the angular component, its CSS, Classes, Angular Routing,Component Template and Module (Change these files to change              front end)
 - model/movie.js : Contains our movie model for hangman
 - routes/movieroutes.js : Restful API calls defined here
+
+<img src="hangman_screenshot.png"/>

@@ -1,0 +1,42 @@
+
+
+
+		<h1>{{title}}</h1>
+
+		<img src="./assets/60px-Hangman-0.png" *ngIf='lives==10'>
+		<img src="./assets/60px-Hangman-1.png" *ngIf='lives==9'>
+		<img src="./assets/60px-Hangman-2.png" *ngIf='lives==8'>
+		<img src="./assets/60px-Hangman-3.png" *ngIf='lives==7'>
+		<img src="./assets/60px-Hangman-4.png" *ngIf='lives==6'>
+		<img src="./assets/60px-Hangman-5.png" *ngIf='lives==5'>
+		<img src="./assets/60px-Hangman-6.png" *ngIf='lives==4'>
+		<img src="./assets/60px-Hangman-7.png" *ngIf='lives==3'>
+		<img src="./assets/60px-Hangman-8.png" *ngIf='lives==2'>
+		<img src="./assets/60px-Hangman-9.png" *ngIf='lives==1'>
+		<img src="./assets/60px-Hangman-10.png" *ngIf='lives==0'>
+		<div class='livesContainer'>
+		<h2>Lives:{{lives}}</h2>
+		</div>
+	
+	<h3>{{maskedWord}}</h3>
+
+	
+<!-- <form (ngSubmit)="onSubmit()">
+	<input type="text" name="userInput">
+	<input type="submit">
+</form>
+ -->
+
+ 
+<div>
+<button [disabled]="!alphabet.isValid" *ngFor='let alphabet of alphabets' (click)="onClickOfAlphabet(alphabet)" [hidden]='id<0'><strong>{{alphabet.value}}</strong></button>
+
+<br>
+
+<div><br><button (click)="onClickReset(alphabets)">New Game</button><br></div>
+<br>
+
+<div [hidden]='!lettersUsed.length' class='lettersUsed'>Letters used:<h3>{{lettersUsed}}</h3></div>
+<h1 [hidden]='!isWin'>You Win</h1>
+<h1 [hidden]='!isLose'>You Lose</h1>
+</div>
