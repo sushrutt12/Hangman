@@ -33,7 +33,7 @@
 
 <br>
 
-<div><br><button (click)="onClickReset(alphabets)">New Game</button><br></div>
+<div><br><button (click)="onClickReset(alphabets)">New Game</button><br><h3>Wins:{{winCounter}} Loses:{{lossCounter}}</h3></div>
 <br>
 
 <div [hidden]='!lettersUsed.length' class='lettersUsed'>Letters used:<h3>{{lettersUsed}}</h3></div>

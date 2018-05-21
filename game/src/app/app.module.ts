@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import {Ng2Webstorage} from 'ngx-webstorage';
+
 
 
 @NgModule({
@@ -8,7 +10,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,Ng2Webstorage
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {getMovie,createMask,getMovieId,reveal,charExistsInMovie} from '../../model/movie';
 import { Alphabet } from './alphabet';
+import {LocalStorageService} from 'ngx-webstorage';
 
 
 @Component({
@@ -10,8 +11,17 @@ import { Alphabet } from './alphabet';
 })
 export class AppComponent{
 
+constructor (private localSt:LocalStorageService){  
+if(!this.localSt.retrieve('winCounter')){
+    this.localSt.store('winCounter',0);
+    this.localSt.store('lossCounter',0);
+  }
+  else{
+    this.winCounter=this.localSt.retrieve('winCounter');
+    this.lossCounter=this.localSt.retrieve('lossCounter');
+  }
+}
  
-
 	a: Alphabet = {
     value:'a',
     isValid:true
@@ -124,15 +134,16 @@ export class AppComponent{
   };
   isWin=false;
   isLose=false;
+  // alphabets="abcdefghijklmnopqrstuvwxyz".split('');
   alphabets=[this.a,this.b,this.c,this.d,this.e,this.f,this.g,this.h,this.i,this.j,this.k,this.l,this.m,this.n,this.o,this.p,this.q,this.r,this.s,this.t,this.u,this.v,this.w,this.x,this.y,this.z];
   maskedWord="";
   lives=10;
   title = 'Welcome to Hangman game';
   lettersUsed= "";
   id=-1;
-  // isValid:any;
-  // isValid: boolean = true;
-  // alphabets="abcdefghijklmnopqrstuvwxyz".split('');
+  winCounter=0;
+  lossCounter=0;
+
   onClickOfAlphabet(a){  	
   	this.lettersUsed+=a.value;
   	a.isValid=false;
@@ -143,6 +154,11 @@ export class AppComponent{
   		{
   			this.isWin=true;
   			this.id=-1
+        var win=this.getLocalStorage('winCounter');
+        console.log('win counter'+win);
+        win+=1;
+        this.setLocalStorage('winCounter',win);
+        this.winCounter=win;
 
   		}
   	  	 }
@@ -152,6 +168,12 @@ export class AppComponent{
   	 if(this.lives===0)
   	 	{	this.maskedWord=getMovie(this.id);
   	 		this.isLose=true;
+        var loss=this.getLocalStorage('lossCounter');
+        console.log('LOss counter'+loss);
+        loss+=1;
+        this.setLocalStorage('lossCounter',loss);
+        this.lossCounter=loss;
+        //update counter and store again
   	 		this.id=-1
   	 			
   	 		}
@@ -170,7 +192,12 @@ export class AppComponent{
     	this.isLose=false;
     	this.lives=10;
 	}
-
+  setLocalStorage(key,value){
+    this.localSt.store(key,value);
+  }
+  getLocalStorage(key){
+    return this.localSt.retrieve(key);
+  }
   
 
 
