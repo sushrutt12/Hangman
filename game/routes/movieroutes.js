@@ -6,10 +6,10 @@ var movies=require('../model/movie');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var m=movies.getMovie();
-  var mask=movies.createMask(m)
-  res.write('{movie:'+m+',mask:'+mask+'}');
-  res.end();
+  var _id=movies.getMovieId();
+  var _movie=movies.getMovie(_id);
+  var _mask=movies.createMask(_movie);
+  res.json({id:_id,movieName: _movie, movieMask:_mask});
   
 });
 

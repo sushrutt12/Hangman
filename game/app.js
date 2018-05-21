@@ -2,6 +2,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+
+
 //using logger to keep track of requests
 var logger = require('morgan');
 var apiRouter = require('./routes/movieroutes');
